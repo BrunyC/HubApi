@@ -1,0 +1,38 @@
+version: '3.7'
+
+networks:
+  hub-app-network:
+    driver: bridge
+
+services:
+  hub-api:
+    container_name: hub-api
+    image: hubcontrolcontainerregistry.azurecr.io/hubapi_hub-api:latest
+    environment:
+      SSL_ENABLED: 'false'
+      RB_USERNAME: admin
+      RB_PASSWORD: MLFacil@2017
+      RB_PORT: 5672
+      RB_VHOST: ''
+      RB_HOST: hbrabbitmq01.eastus.cloudapp.azure.com
+      LOGS_PATTERN: logs
+      LOGS_GET_PATTERN: get-logs
+      CONTATOS_PATTERN: contatos
+      RB_CONTATO_QUEUE: hub_contato_queue
+      RB_LOGS_QUEUE: hub_logs_queue
+      RB_CONTATO_QUEUE_RETRY_EXCHANGE: hub_contato_retry_exchange
+      RB_CONTATO_QUEUE_RETRY_ROUTING_KEY: hub_contato_retry_routing_key
+      RB_LOGS_QUEUE_RETRY_EXCHANGE: hub_logs_retry_exchange
+      RB_LOGS_QUEUE_RETRY_ROUTING_KEY: hub_logs_retry_routing_key
+      RB_MESSAGE_TTL: 60000
+      RB_RETRY_MAX: 5
+      BLING_BASEURL: https://bling.com.br/Api/v2/
+      JEAGER_ENDPOINT: http://hbdocker02.eastus.cloudapp.azure.com:14268/api/traces
+    volumes:
+      #- /dockerdrive/configs/ssl:/usr/src/app/src/ssl
+      - /dockerdrive/configs/ssl/fullchain.pem:/usr/src/app/src/ssl/hubcontrol.crt
+      - /dockerdrive/configs/ssl/privkey.pem:/usr/src/app/src/ssl/hubcontrol.key
+    ports:
+      - 3100:3100
+    networks:
+      - hub-app-network

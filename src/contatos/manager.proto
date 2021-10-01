@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package manager;
+
+message FindById {
+  string id = 1;
+  string idTransaction = 2;
+  string context = 3;
+}
+
+message User {
+  string id = 1;
+  string sub = 2;
+  string name = 3;
+  string cpfCnpj = 4;
+  string rgIe = 5;
+  string cep = 6;
+  string address = 7;
+  string city = 8;
+  string uf = 9;
+  string telephone = 10;
+  string cellphone = 11;
+  string email = 12;
+  string int32 = 13;
+  string personType = 14;
+  string status = 15;
+  int32 exp = 16;
+}
+
+message FindResponse {
+  repeated User result = 1;
+}
+
+service UsersService {
+  rpc FindOne (FindById) returns (FindResponse);
+}

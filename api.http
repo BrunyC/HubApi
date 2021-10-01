@@ -1,0 +1,6 @@
+POST http://localhost:3100/api/contatos
+Content-Type: application/json
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsIm5hbWUiOiJNYXJjaW8gTi4gU2FsZXMgLSBNZWxpQ29udHJvbCIsImVtYWlsIjoidGVjc29maXhAZ21haWwuY29tIiwiZXhwIjoxNjMwNzE1MTI5fQ.4oFU1ucQei5Tca_Yab5rlLMPzHoGprV02GChOTBrWbU",
+}

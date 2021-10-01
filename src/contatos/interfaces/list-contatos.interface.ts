@@ -1,0 +1,18 @@
+export interface ContatosList {
+  id: number,
+  nome: string,
+  fantasia: string,
+  tipoPessoa: string,
+  contribuinte: string,
+  cpf_cnpj: string,
+  ie_rg: string,
+  endereco: string,
+  numero: string,
+  complemento: string,
+  bairro: string,
+  cep: string,
+  cidade: string,
+  uf: string,
+  fone: string,
+  email: string,
+}

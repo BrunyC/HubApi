@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  hub-api-network:
+    driver: bridge
+  internal:
+    external: true
+
+services:
+  hub-api:
+    container_name: hub-api
+    build: .
+    restart: unless-stopped
+    environment:
+      GRPC_CONNECTION_USERS_URL: localhost:3050
+    volumes:
+      - .:/app
+    ports:
+      - 3100:3100
+    networks:
+      - hub-api-network
+      - internal
